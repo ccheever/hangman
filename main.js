@@ -21,6 +21,9 @@ import {
 import Router from './navigation/Router';
 import cacheAssetsAsync from './utilities/cacheAssetsAsync';
 
+import ActionTypes from './state/ActionTypes';
+import ActionCreators from './state/ActionCreators';
+
 class AppContainer extends React.Component {
   state = {
     appIsReady: false,

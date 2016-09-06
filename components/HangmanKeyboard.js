@@ -15,6 +15,8 @@ import {
 
 import Exponent from 'exponent';
 
+import TouchableBounce from 'react-native/Libraries/Components/Touchable/TouchableBounce';
+
 import LetterTile from './LetterTile';
 
 export default class HangmanKeyboard extends React.Component {
@@ -28,7 +30,20 @@ export default class HangmanKeyboard extends React.Component {
       if (this.props.guessedLetterSet[letter.toUpperCase()]) {
         active = false;
       }
-      tiles.push(<LetterTile letter={letter} key={letter} active={active} />);
+      let tile;
+      if (active) {
+        tile = (
+          <TouchableBounce key={letter}>
+            <LetterTile letter={letter} key={letter} active={active} />
+          </TouchableBounce>
+        );
+      } else {
+        tile = (
+          <LetterTile letter={letter} key={letter} active={active} />
+        );
+      }
+
+      tiles.push(tile);
     }
 
     return (

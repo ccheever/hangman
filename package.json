@@ -15,6 +15,8 @@
     "exponent": "^9.0.2",
     "lodash": "^4.13.1",
     "react": "15.2.1",
-    "react-native": "github:exponentjs/react-native#sdk-9.0.0"
+    "react-native": "github:exponentjs/react-native#sdk-9.0.0",
+    "react-redux": "^4.4.5",
+    "redux": "^3.6.0"
   }
 }
