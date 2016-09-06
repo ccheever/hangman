@@ -1,8 +1,0 @@
-{
-  "exponentServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 1399,
-  "exponentServerNgrokUrl": "https://cz-ab8.ccheever.hangman.exp.direct",
-  "packagerNgrokUrl": "https://packager.cz-ab8.ccheever.hangman.exp.direct",
-  "ngrokPid": 1610
-}
