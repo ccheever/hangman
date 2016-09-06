@@ -1,0 +1,8 @@
+import ActionTypes from './ActionTypes';
+
+export function guessLetter(letter) {
+  return {
+    type: ActionTypes.GUESS_LETTER,
+    letter,
+  };
+}
