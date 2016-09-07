@@ -17,6 +17,7 @@ import {
   MonoText,
 } from '../components/StyledText';
 
+import HangmanDrawing from '../components/HangmanDrawing';
 import HangmanKeyboard from '../components/HangmanKeyboard';
 
 import {
@@ -58,7 +59,7 @@ class HangmanWordComponent extends React.Component {
         <HangmanText style={{
           color: '#bbbbbb',
           fontSize: 32,
-        }}>{this.state.word}</HangmanText>
+        }}>{this.state.word.replace(' ', '  ')}</HangmanText>
       </View>
     );
   }
@@ -75,9 +76,13 @@ export default class HomeScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <ScrollView
-          style={styles.container}
-          contentContainerStyle={styles.contentContainer}>
+        <View style={[styles.contentContainer, {
+            justifyContent: 'flex-start',
+            flex: 1,
+        }]}>
+        {/* <ScrollView
+           style={styles.container}
+           contentContainerStyle={styles.contentContainer}> */}
 
 
           <View style={styles.welcomeContainer}>
@@ -107,8 +112,9 @@ export default class HomeScreen extends React.Component {
             */}
 
             <HangmanWordComponent />
+            <HangmanDrawing />
           </View>
-          
+
           {/*
           <View style={styles.helpContainer}>
             <TouchableOpacity onPress={this._handleHelpPress} style={styles.helpLink}>
@@ -118,7 +124,8 @@ export default class HomeScreen extends React.Component {
             </TouchableOpacity>
           </View>
           */}
-        </ScrollView>
+        </View>
+        {/*</ScrollView>*/}
 
         <HangmanKeyboard guessedLetterSet={WOF_DEFAULT_GUESSES} />
 

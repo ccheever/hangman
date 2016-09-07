@@ -23,6 +23,7 @@ import cacheAssetsAsync from './utilities/cacheAssetsAsync';
 
 import ActionTypes from './state/ActionTypes';
 import ActionCreators from './state/ActionCreators';
+import HomeScreen from './screens/HomeScreen';
 
 class AppContainer extends React.Component {
   state = {
@@ -44,8 +45,12 @@ class AppContainer extends React.Component {
           'space-mono': require('./assets/fonts/SpaceMono-Regular.ttf'),
           // 'VT323': require('./assets/fonts/VT323.ttf'),
           // 'NovaMono': require('./assets/fonts/NovaMono.ttf'),
-          'DontMixYerDrinks': require('./assets/fonts/dontmix.ttf'),
-          'Targa': require('./assets/fonts/TargaMSHand.ttf'),
+          // 'DontMixYerDrinks': require('./assets/fonts/dontmix.ttf'),
+          // 'Targa': require('./assets/fonts/TargaMSHand.ttf'),
+          // 'CafeFrancoise': require('./assets/fonts/cafe-francoise.ttf'),
+          // 'Appleberry': require('./assets/fonts/appleberry.ttf'),
+          // 'SkinnyJeansSolid': require('./assets/fonts/SkinnyJeansSolid.ttf'),
+          'ItsaSketch': require('./assets/fonts/ItsaSketch.ttf'),
         },
 
       ],
@@ -61,12 +66,14 @@ class AppContainer extends React.Component {
 
       return (
         <View style={styles.container}>
+          <HomeScreen />
+          {/*
           <NavigationProvider router={Router}>
             <StackNavigation
               id="root"
               initialRoute={initialRoute}
             />
-          </NavigationProvider>
+          </NavigationProvider>*/}
 
           {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
           {Platform.OS === 'android' && <View style={styles.statusBarUnderlay} />}
