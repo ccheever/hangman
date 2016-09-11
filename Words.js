@@ -26,11 +26,11 @@ export function wordForDisplay(word, guessedLetterSet) {
   if (!word) {
     return word;
   }
-  let dw = '';
+  let dw = '' ;
   for (let i = 0; i < word.length; i++) {
     let c = word.substr(i, 1).toUpperCase();
     if (c.match(/\s/)) {
-      dw += ' . . . .';
+      dw += ' ';
     } else if (guessedLetterSet[c]) {
       dw += c;
     } else {

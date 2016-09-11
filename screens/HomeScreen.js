@@ -59,7 +59,7 @@ class HangmanWordComponent extends React.Component {
         <HangmanText style={{
           color: '#bbbbbb',
           fontSize: 32,
-        }}>{this.state.word.replace(' ', '  ')}</HangmanText>
+        }}>{this.state.word}</HangmanText>
       </View>
     );
   }
@@ -112,7 +112,7 @@ export default class HomeScreen extends React.Component {
             */}
 
             <HangmanWordComponent />
-            <HangmanDrawing />
+            <HangmanDrawing strikes="6" />
           </View>
 
           {/*
