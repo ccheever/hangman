@@ -22,8 +22,12 @@ import Router from './navigation/Router';
 import cacheAssetsAsync from './utilities/cacheAssetsAsync';
 
 import ActionTypes from './state/ActionTypes';
-import ActionCreators from './state/ActionCreators';
+import * as ActionCreators from './state/ActionCreators';
+import * as Game from './Game';
 import HomeScreen from './screens/HomeScreen';
+import Store from './state/Store';
+
+let store = Store;
 
 class AppContainer extends React.Component {
   state = {
@@ -32,6 +36,7 @@ class AppContainer extends React.Component {
 
   componentWillMount() {
     this._loadAssetsAsync();
+    Game.createNewGameAsync(); // TODO: Handle errors
   }
 
   async _loadAssetsAsync() {
@@ -48,9 +53,10 @@ class AppContainer extends React.Component {
           // 'DontMixYerDrinks': require('./assets/fonts/dontmix.ttf'),
           // 'Targa': require('./assets/fonts/TargaMSHand.ttf'),
           // 'CafeFrancoise': require('./assets/fonts/cafe-francoise.ttf'),
-          // 'Appleberry': require('./assets/fonts/appleberry.ttf'),
+          'Appleberry': require('./assets/fonts/appleberry.ttf'),
           // 'SkinnyJeansSolid': require('./assets/fonts/SkinnyJeansSolid.ttf'),
-          'ItsaSketch': require('./assets/fonts/ItsaSketch.ttf'),
+          // 'ItsaSketch': require('./assets/fonts/ItsaSketch.ttf'),
+
         },
 
       ],
@@ -66,7 +72,7 @@ class AppContainer extends React.Component {
 
       return (
         <View style={styles.container}>
-          <HomeScreen />
+          <HomeScreen store={Store} />
           {/*
           <NavigationProvider router={Router}>
             <StackNavigation

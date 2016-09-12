@@ -19,7 +19,9 @@ export async function randomWordAsync() {
   // console.log("randomWordAsync called");
   let trends = await getTrendsAsync();
   let word = randomChoice(trends);
-  return diacritics.remove(word);
+  word = diacritics.remove(word);
+  word = word.toUpperCase();
+  return word;
 }
 
 export function wordForDisplay(word, guessedLetterSet) {

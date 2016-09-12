@@ -19,6 +19,9 @@ import TouchableBounce from 'react-native/Libraries/Components/Touchable/Touchab
 
 import LetterTile from './LetterTile';
 
+import * as ActionCreators from '../state/ActionCreators';
+import Store from '../state/Store';
+
 export default class HangmanKeyboard extends React.Component {
 
   _renderRow(letters) {
@@ -33,7 +36,7 @@ export default class HangmanKeyboard extends React.Component {
       let tile;
       if (active) {
         tile = (
-          <TouchableBounce key={letter}>
+          <TouchableBounce key={letter} onPress={this._onPress(letter)}>
             <LetterTile letter={letter} key={letter} active={active} />
           </TouchableBounce>
         );
@@ -56,6 +59,13 @@ export default class HangmanKeyboard extends React.Component {
         {tiles}
       </View>
     );
+  }
+
+  _onPress(letter) {
+    return () => {
+      console.log("Pressed letter '" + letter + "'");
+      this.props.dispatch(ActionCreators.guessLetter(letter));
+    }
   }
 
   render() {

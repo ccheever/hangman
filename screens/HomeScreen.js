@@ -12,6 +12,8 @@ import {
   View,
 } from 'react-native';
 
+import { connect } from 'react-redux';
+
 import {
   HangmanText,
   MonoText,
@@ -25,47 +27,45 @@ import {
   wordForDisplay,
 } from '../Words';
 
+import Store from '../state/Store';
+
 const WOF_DEFAULT_GUESSES = {R: true, S: true, T: true, L: true, N: true, E: true,};
 
 class HangmanWordComponent extends React.Component {
 
-  constructor() {
-    super();
-    this.state = {
-      word: null,
-    };
-  }
-
-  async setWordAsync() {
-    // console.log("setWordAsync called");
-    let word = await randomWordAsync();
-    this.setState({
-      word,
-    });
-  }
-
-  componentDidMount() {
-    // console.log("component did mount");
-    this.setWordAsync();
-  }
-
   render() {
+    let word = this.props.word || '';
+    console.log("HangmanWordComponent rendering for '" + word + "'");
     return (
       <View>
         <HangmanText style={{
             color: 'black',
             fontSize: 40,
-          }}>{wordForDisplay(this.state.word, WOF_DEFAULT_GUESSES)}</HangmanText>
+          }}>{wordForDisplay(word, this.props.guessedLetterSet)}</HangmanText>
         <HangmanText style={{
           color: '#bbbbbb',
           fontSize: 32,
-        }}>{this.state.word}</HangmanText>
+        }}>{word}</HangmanText>
       </View>
     );
   }
 }
 
 
+@connect(
+  (state, ownProps) => {
+     return {
+       ...ownProps,
+       ...state,
+     };
+  },
+  (dispatch, ownProps) => {
+    return {
+      dispatch,
+      ...ownProps,
+    }
+  }
+)
 export default class HomeScreen extends React.Component {
   static route = {
     navigationBar: {
@@ -74,6 +74,8 @@ export default class HomeScreen extends React.Component {
   }
 
   render() {
+    console.log("HomeScreen props=" + JSON.stringify(this.props));
+    console.log("HomeScreen state=" + JSON.stringify(this.state));
     return (
       <View style={styles.container}>
         <View style={[styles.contentContainer, {
@@ -111,8 +113,8 @@ export default class HomeScreen extends React.Component {
             </Text>
             */}
 
-            <HangmanWordComponent />
-            <HangmanDrawing strikes="6" />
+            <HangmanWordComponent word={this.props.word} guessedLetterSet={this.props.guessedLetterSet} />
+            <HangmanDrawing strikes={this.props.strikes} />
           </View>
 
           {/*
@@ -127,7 +129,7 @@ export default class HomeScreen extends React.Component {
         </View>
         {/*</ScrollView>*/}
 
-        <HangmanKeyboard guessedLetterSet={WOF_DEFAULT_GUESSES} />
+        <HangmanKeyboard guessedLetterSet={this.props.guessedLetterSet} dispatch={this.props.dispatch} />
 
         {/*
         <View style={styles.tabBarInfoContainer}>
