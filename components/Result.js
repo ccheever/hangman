@@ -87,6 +87,7 @@ export class Win extends React.Component {
 
 export class Lose extends React.Component {
   render() {
+    // return (<View />);
     return (
       <Outcome {...this.props} result="lose" word={this.props.word} backgroundColor="#ff2851" />
     );
