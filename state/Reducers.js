@@ -9,12 +9,14 @@ let initialState = {
   word: null,
   strikes: 0,
   gameState: 'NOT_YET_STARTED',
+  lettersPlayed: 0,
 };
 
 let app = (state=initialState, action) => {
   console.log("Reducing action of type '" + action.type + "' with data: " + JSON.stringify(action));
   switch (action.type) {
     case ActionTypes.GUESS_LETTER:
+      let lettersPlayed = state.lettersPlayed;
 
       if (state.gameState !== 'IN_PROGRESS') {
         // TODO: Maybe surface an error?
@@ -28,10 +30,20 @@ let app = (state=initialState, action) => {
       let strikes = state.strikes;
       let guessedLetterSet = state.guessedLetterSet;
       let word = state.word;
+
+      if (guessedLetterSet[letter]) {
+        console.log("Already played that letter");
+        return {
+          ...state,
+        };
+      }
+
       guessedLetterSet[letter] = true;
-      if (Game.wordContainsLetter(state.word, letter)) {
+      lettersPlayed += 1;
+
+      if (Game.wordContainsLetter(word, letter)) {
         // Check for a win
-        console.log("word '" + state.word + "' contains letter '" + letter + "'");
+        console.log("word '" + word + "' contains letter '" + letter + "'");
         if (Game.allLettersGuessed(word, guessedLetterSet)) {
           // Win
           console.log("win!");
@@ -39,6 +51,7 @@ let app = (state=initialState, action) => {
             ...state,
             guessedLetterSet,
             gameState: 'WIN',
+            lettersPlayed,
           };
         }
       } else {
@@ -50,6 +63,7 @@ let app = (state=initialState, action) => {
             strikes,
             guessedLetterSet,
             gameState: 'LOSE',
+            lettersPlayed,
           };
         }
       }
@@ -60,6 +74,7 @@ let app = (state=initialState, action) => {
         ...state,
         strikes,
         guessedLetterSet,
+        lettersPlayed,
       };
 
       break;
@@ -70,6 +85,7 @@ let app = (state=initialState, action) => {
         word: action.word,
         strikes: 0,
         gameState: 'IN_PROGRESS',
+        lettersPlayed,
       };
 
     default:

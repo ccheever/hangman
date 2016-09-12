@@ -17,7 +17,7 @@ export class MonoText extends React.Component {
 export class HangmanText extends React.Component {
   render() {
     return (
-      <Text {...this.props} style={[{letterSpacing: 3,}, this.props.style, Font.style('Appleberry')]} />
+      <Text {...this.props} style={[{letterSpacing: 3,}, this.props.style, Font.style('space-mono')]} />
     );
   }
 }

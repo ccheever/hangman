@@ -23,6 +23,11 @@ import HangmanDrawing from '../components/HangmanDrawing';
 import HangmanKeyboard from '../components/HangmanKeyboard';
 
 import {
+  Win,
+  Lose,
+} from '../components/Result';
+
+import {
   randomWordAsync,
   wordForDisplay,
 } from '../Words';
@@ -37,15 +42,26 @@ class HangmanWordComponent extends React.Component {
     let word = this.props.word || '';
     console.log("HangmanWordComponent rendering for '" + word + "'");
     return (
-      <View>
-        <HangmanText style={{
-            color: 'black',
-            fontSize: 40,
-          }}>{wordForDisplay(word, this.props.guessedLetterSet)}</HangmanText>
+      <View style={{
+          paddingHorizontal: 20,
+      }}>
+        {(this.props.gameState === 'LOSE') && (
+          <HangmanText style={{
+              color: '#aaaaaa',
+              fontSize: 40,
+            }}>{word}</HangmanText>
+        ) || (
+          <HangmanText style={{
+              color: 'black',
+              fontSize: 40,
+            }}>{wordForDisplay(word, this.props.guessedLetterSet)}</HangmanText>
+        )}
+        {/*
         <HangmanText style={{
           color: '#bbbbbb',
           fontSize: 32,
         }}>{word}</HangmanText>
+        */}
       </View>
     );
   }
@@ -78,6 +94,8 @@ export default class HomeScreen extends React.Component {
     console.log("HomeScreen state=" + JSON.stringify(this.state));
     return (
       <View style={styles.container}>
+        {(this.props.gameState === 'WIN') && (<Win word={this.props.word} />)}
+        {(this.props.gameState === 'LOSE') && (<Lose word={this.props.word} />)}
         <View style={[styles.contentContainer, {
             justifyContent: 'flex-start',
             flex: 1,
@@ -112,8 +130,7 @@ export default class HomeScreen extends React.Component {
               Change this text and your app will automatically reload.
             </Text>
             */}
-
-            <HangmanWordComponent word={this.props.word} guessedLetterSet={this.props.guessedLetterSet} />
+            <HangmanWordComponent word={this.props.word} gameState={this.props.gameState} guessedLetterSet={this.props.guessedLetterSet} />
             <HangmanDrawing strikes={this.props.strikes} />
           </View>
 
@@ -142,6 +159,7 @@ export default class HomeScreen extends React.Component {
           </View>
         </View>
         */}
+
       </View>
     );
   }

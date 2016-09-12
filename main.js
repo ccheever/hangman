@@ -17,6 +17,7 @@ import {
 import {
   FontAwesome,
 } from '@exponent/vector-icons';
+import { Provider } from 'react-redux'
 
 import Router from './navigation/Router';
 import cacheAssetsAsync from './utilities/cacheAssetsAsync';
@@ -36,7 +37,7 @@ class AppContainer extends React.Component {
 
   componentWillMount() {
     this._loadAssetsAsync();
-    Game.createNewGameAsync(); // TODO: Handle errors
+    Game.createNewGameAsync(Store.dispatch); // TODO: Handle errors
   }
 
   async _loadAssetsAsync() {
@@ -53,9 +54,11 @@ class AppContainer extends React.Component {
           // 'DontMixYerDrinks': require('./assets/fonts/dontmix.ttf'),
           // 'Targa': require('./assets/fonts/TargaMSHand.ttf'),
           // 'CafeFrancoise': require('./assets/fonts/cafe-francoise.ttf'),
-          'Appleberry': require('./assets/fonts/appleberry.ttf'),
+          // 'Appleberry': require('./assets/fonts/appleberry.ttf'),
+          // 'Puddleduck': require('./assets/fonts/Puddleduck.ttf'),
           // 'SkinnyJeansSolid': require('./assets/fonts/SkinnyJeansSolid.ttf'),
           // 'ItsaSketch': require('./assets/fonts/ItsaSketch.ttf'),
+          'TopSecret': require('./assets/fonts/Top_Secret.ttf'),
 
         },
 
@@ -72,7 +75,9 @@ class AppContainer extends React.Component {
 
       return (
         <View style={styles.container}>
-          <HomeScreen store={Store} />
+          <Provider store={Store}>
+            <HomeScreen />
+          </Provider>
           {/*
           <NavigationProvider router={Router}>
             <StackNavigation

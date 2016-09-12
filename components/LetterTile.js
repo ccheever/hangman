@@ -15,6 +15,7 @@ import {
 
 import Exponent from 'exponent';
 
+
 export default class LetterTile extends React.Component {
   render() {
     let colors = ['#ffcc00', '#ddbb88', '#ccdd33'];
