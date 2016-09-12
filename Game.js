@@ -15,7 +15,7 @@ export function allLettersGuessed(word, guessedLetterSet) {
   // console.log("allLettersGuessed('" + word + "', " + JSON.stringify(guessedLetterSet) + ")");
   for (let i = 0; i < word.length; i++) {
     let c = word.substr(i, 1);
-    if (!/[A-Z]/.test(c)) {
+    if (!/[A-Z0-9]/.test(c)) {
       continue;
     }
     // console.log("Checking for letter: '" + c + "'");
