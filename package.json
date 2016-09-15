@@ -1,7 +1,7 @@
 {
   "name": "hangman",
   "version": "0.0.0",
-  "description": "Hello Exponent!",
+  "description": "Hangman based on trending topics!",
   "author": "ccheever@gmail.com",
   "private": true,
   "main": "main.js",
