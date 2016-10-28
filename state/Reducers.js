@@ -88,6 +88,10 @@ let app = (state=initialState, action) => {
         lettersPlayed,
       };
 
+    case ActionTypes.CLEAR_GAME:
+      return initialState;
+      break;
+
     default:
       return {
         ...state

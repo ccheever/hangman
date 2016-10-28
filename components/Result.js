@@ -35,16 +35,28 @@ class Outcome extends React.Component {
   }
 
   render() {
+
+
+
     return (
-      <TouchableBounce style={{zIndex: 200,}} onPress={this._onPress}>
-        <View style={{
+      <TouchableBounce style={{
+          zIndex: 300,
           position: 'absolute',
           width: width,
           justifyContent: 'center',
           alignItems: 'center',
           top: 180,
           left: 0,
+        }} onPress={this._onPress}>
+        <View style={{
+          zIndex: 300,
+          position: 'absolute',
+          width: width,
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: 200,
           // backgroundColor: 'blue',
+          // flex: 1,
         }}>
           <View style={{
             backgroundColor: this.props.backgroundColor,
@@ -60,20 +72,23 @@ class Outcome extends React.Component {
               color: 'white',
               fontSize: 80,
               fontWeight: 'bold',
+              fontFamily: 'TopSecret',
             },
-            Font.style('TopSecret'),
+            // Font.style('TopSecret'),
             ]}>{this.props.result.toUpperCase()}</Text>
             <Text style={[{
               color: 'white',
               fontSize: 20,
               fontWeight: 'bold',
+              fontFamily: 'space-mono',
             },
-            Font.style('space-mono'),
+            // Font.style('space-mono'),
           ]}>{this.props.word}</Text>
         </View>
       </View>
-    </TouchableBounce>
+      </TouchableBounce>
     );
+
   }
 }
 

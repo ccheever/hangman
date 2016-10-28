@@ -13,3 +13,9 @@ export function newGame(word) {
     word,
   };
 }
+
+export function clearGame() {
+  return {
+    type: ActionTypes.CLEAR_GAME,
+  };
+}

@@ -3,6 +3,7 @@ import Store from './state/Store';
 import * as Words from './Words';
 
 export async function createNewGameAsync(dispatch) {
+  dispatch(ActionCreators.clearGame());
   let word = await Words.randomWordAsync();
   return dispatch(ActionCreators.newGame(word));
 }

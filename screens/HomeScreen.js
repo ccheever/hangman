@@ -94,8 +94,6 @@ export default class HomeScreen extends React.Component {
     console.log("HomeScreen state=" + JSON.stringify(this.state));
     return (
       <View style={styles.container}>
-        {(this.props.gameState === 'WIN') && (<Win word={this.props.word} />)}
-        {(this.props.gameState === 'LOSE') && (<Lose word={this.props.word} />)}
         <View style={[styles.contentContainer, {
             justifyContent: 'flex-start',
             flex: 1,
@@ -130,6 +128,15 @@ export default class HomeScreen extends React.Component {
               Change this text and your app will automatically reload.
             </Text>
             */}
+            {(this.props.gameState === 'NOT_YET_STARTED') && (
+              <Text style={{
+                  color: '#999999',
+                  fontSize: 20,
+                  textAlign: 'center',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+              }}>Loading a trending phrase for you to guess...</Text>
+            )}
             <HangmanWordComponent word={this.props.word} gameState={this.props.gameState} guessedLetterSet={this.props.guessedLetterSet} />
             <HangmanDrawing strikes={this.props.strikes} />
           </View>
@@ -159,6 +166,10 @@ export default class HomeScreen extends React.Component {
           </View>
         </View>
         */}
+
+        {(this.props.gameState === 'WIN') && (<Win word={this.props.word} />)}
+        {(this.props.gameState === 'LOSE') && (<Lose word={this.props.word} />)}
+
 
       </View>
     );
