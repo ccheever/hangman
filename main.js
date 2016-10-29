@@ -11,15 +11,10 @@ import {
   View,
 } from 'react-native';
 import {
-  NavigationProvider,
-  StackNavigation,
-} from '@exponent/ex-navigation';
-import {
   FontAwesome,
 } from '@exponent/vector-icons';
 import { Provider } from 'react-redux'
 
-import Router from './navigation/Router';
 import cacheAssetsAsync from './utilities/cacheAssetsAsync';
 
 import ActionTypes from './state/ActionTypes';
@@ -71,21 +66,12 @@ class AppContainer extends React.Component {
   render() {
     if (this.state.appIsReady) {
       let { notification } = this.props.exp;
-      let initialRoute = Router.getRoute('rootNavigation', {notification});
 
       return (
         <View style={styles.container}>
           <Provider store={Store}>
             <HomeScreen />
           </Provider>
-          {/*
-          <NavigationProvider router={Router}>
-            <StackNavigation
-              id="root"
-              initialRoute={initialRoute}
-            />
-          </NavigationProvider>*/}
-
           {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
           {Platform.OS === 'android' && <View style={styles.statusBarUnderlay} />}
         </View>

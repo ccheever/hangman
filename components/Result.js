@@ -36,10 +36,8 @@ class Outcome extends React.Component {
 
   render() {
 
-
-
     return (
-      <TouchableBounce style={{
+      <TouchableOpacity style={{
           zIndex: 300,
           position: 'absolute',
           width: width,
@@ -74,7 +72,6 @@ class Outcome extends React.Component {
               fontWeight: 'bold',
               fontFamily: 'TopSecret',
             },
-            // Font.style('TopSecret'),
             ]}>{this.props.result.toUpperCase()}</Text>
             <Text style={[{
               color: 'white',
@@ -82,11 +79,10 @@ class Outcome extends React.Component {
               fontWeight: 'bold',
               fontFamily: 'space-mono',
             },
-            // Font.style('space-mono'),
           ]}>{this.props.word}</Text>
         </View>
       </View>
-      </TouchableBounce>
+    </TouchableOpacity>
     );
 
   }
@@ -102,7 +98,6 @@ export class Win extends React.Component {
 
 export class Lose extends React.Component {
   render() {
-    // return (<View />);
     return (
       <Outcome {...this.props} result="lose" word={this.props.word} backgroundColor="#ff2851" />
     );

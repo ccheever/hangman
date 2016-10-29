@@ -18,14 +18,17 @@ import Exponent from 'exponent';
 
 export default class LetterTile extends React.Component {
   render() {
+
     let colors = ['#ffcc00', '#ddbb88', '#ccdd33'];
     let textColor = '#222211';
     let backgroundColor = 'white';
+
     if (!this.props.active) {
       colors = ['#666666', '#888888', '#777777']
       textColor = '#aaaaaa';
       backgroundColor = '#eeeeee';
     }
+
     return (
       <View style={{
           borderRadius: 3,
